@@ -1,0 +1,12 @@
+<button (click)="doOnClick($event)">点我</button>
+<hr>
+<!-- 即使设置了disabled="false"，HTML属性依然改变不了disabled的值，
+HTML属性只在初始化时赋值一次，并且也给DOM属性赋值。之后HTML属性的值不能改变。 -->
+<button disabled="false">点我</button>
+<hr>
+<input value="Tom" (input)="doOnInput($event)">
+<hr>
+<!-- 属性绑定 -->
+<img [src]="imgUrl">
+<!-- 插值表达式 -->
+<img src="{{imgUrl}}">

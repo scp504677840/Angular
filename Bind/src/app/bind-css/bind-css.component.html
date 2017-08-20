@@ -1,0 +1,33 @@
+<p class="one">
+  未使用CSS类绑定
+</p>
+
+<br>
+
+<div [class]="divClass">
+  使用CSS类绑定
+</div>
+
+<br>
+
+<div class="four" [class.three]="isShow">
+  局部CSS类绑定
+</div>
+
+<br>
+
+<div [ngClass]="divngClass">
+  使用ngClass绑定
+</div>
+
+<br>
+
+<div [style.color]="isDev?'red':'green'">
+  样式绑定，做内联样式
+</div>
+
+<br>
+
+<div [ngStyle]="divngStyle">
+  使用ngStyle绑定
+</div>

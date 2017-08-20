@@ -1,0 +1,28 @@
+<p>
+  名称：{{name}}
+</p>
+
+<!-- 事件绑定 -->
+<div>
+  <p>事件绑定</p>
+  <input (input)="doOnInput($event)">
+</div>
+
+<!-- 属性绑定 -->
+<div>
+  <p>属性绑定</p>
+  <input [value]="name">
+</div>
+
+<!-- 同时设置 属性绑定、事件绑定 -->
+<div>
+  <p>同时设置 属性绑定、事件绑定</p>
+  <input [value]="name" (input)="doOnInput($event)">
+</div>
+
+<!-- 双向绑定 -->
+<div>
+  <p>双向绑定</p>
+  <p>标题：{{title}}</p>
+  <input [(ngModel)]="title">
+</div>
