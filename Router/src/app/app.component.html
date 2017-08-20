@@ -1,0 +1,69 @@
+<!--
+<md-card style="padding: 0px;margin: 0px;">
+  <md-toolbar color="primary">
+    <nav>
+      <a md-button routerLink="/part01" routerLinkActive="active">Part01：事件和模板引用</a>
+    </nav>
+  </md-toolbar>
+</md-card>
+
+<md-sidenav-container style="min-height: 400px;">
+  <md-sidenav opened mode="side" #focusSidenav>
+    <md-nav-list>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part01" routerLinkActive="active">Part01：事件和模板引用</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part02" routerLinkActive="active">Part02：事件进阶</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part03" routerLinkActive="active">Part03：注入服务</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part04" routerLinkActive="active">Part04：使用 ngFor 指令</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part05" routerLinkActive="active">Part05：使用 Input 装饰器</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part06" routerLinkActive="active">Part06：使用双向绑定</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part07" routerLinkActive="active">Part07：使用 Output 装饰器</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part08" routerLinkActive="active">Part08：组件样式</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part09" routerLinkActive="active">Part09：插值表达式</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part10" routerLinkActive="active">Part10：使用 ngIf 指令</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part11" routerLinkActive="active">Part11：表单模块简介</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part12" routerLinkActive="active">Part12：创建指令</a>
+      <a md-list-item style="padding-left: 16px;padding-right: 16px;" routerLink="/part13" routerLinkActive="active">Part13：指令-定义输入属性</a>
+    </md-nav-list>
+  </md-sidenav>
+  &lt;!&ndash;<button md-button (click)="focusSidenav.toggle()">菜单切换</button>&ndash;&gt;
+  <router-outlet></router-outlet>
+</md-sidenav-container>
+-->
+<nav>
+
+  <!--<a routerLink="/home">首页</a>
+  <a routerLink="/product">商品详情</a>-->
+
+  <!--<a [routerLink]="['/home']">首页</a>
+  <a [routerLink]="['/product']">商品详情</a>
+  <button (click)="toProductDetails()">商品详情</button>-->
+
+  <!-- 查询参数形式 -->
+  <!--<a [routerLink]="['/home']">首页</a>
+  <a [routerLink]="['/product']" [queryParams]="{id:1}">商品详情</a>
+  <button (click)="toProductDetails()">商品详情</button>-->
+
+  <!-- 路径形式 -->
+  <!--<a [routerLink]="['/home']">首页</a>
+  <a [routerLink]="['/product',2]">商品详情</a>
+  <button (click)="toProductDetails()">商品详情</button>-->
+
+  <!-- 辅助路由 -->
+  <!--<a [routerLink]="['/home']">首页</a>
+  <a [routerLink]="['/product',2]">商品详情</a>
+  <button (click)="toProductDetails()">商品详情</button>
+  <a [routerLink]="[{outlets:{aux:'chat'}}]">开始聊天</a>
+  <a [routerLink]="[{outlets:{primary:'home',aux:'chat'}}]">主路由：开始聊天</a>
+  <a [routerLink]="[{outlets:{aux:null}}]">结束聊天</a>-->
+
+  <!-- 路由守卫 -->
+  <a [routerLink]="['/home']">首页</a>
+  <a [routerLink]="['/product',1]">商品详情</a>
+  <button (click)="toProductDetails()">商品详情</button>
+  <a [routerLink]="[{outlets:{aux:'chat'}}]">开始聊天</a>
+  <a [routerLink]="[{outlets:{primary:'home',aux:'chat'}}]">主路由：开始聊天</a>
+  <a [routerLink]="[{outlets:{aux:null}}]">结束聊天</a>
+
+</nav>
+<router-outlet></router-outlet>
+<router-outlet name="aux"></router-outlet>

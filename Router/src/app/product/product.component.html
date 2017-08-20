@@ -1,0 +1,18 @@
+<div class="product">
+  <p>
+    这里是商品组件！！！
+  </p>
+  <p>
+    商品ID：{{id}}
+  </p>
+  <p>
+    商品名称：{{productName}}
+  </p>
+
+  <nav>
+    <a [routerLink]="['./']">商品描述</a>
+    <a [routerLink]="['./seller',99]">销售员</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
