@@ -11,6 +11,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   @ViewChild('child1')
   child1: ChildComponent;
 
+  /**
+   * 消息
+   */
   message: string;
 
   constructor() {
