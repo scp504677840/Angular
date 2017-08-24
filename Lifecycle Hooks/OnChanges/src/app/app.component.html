@@ -1,0 +1,7 @@
+<!--<app-life [name]="title"></app-life>-->
+
+<div class="parent">
+  <div>问候语：<input type="text" [(ngModel)]="sayHi"></div>
+  <div>名称：<input type="text" [(ngModel)]="user.name"></div>
+</div>
+<app-child [sayHi]="sayHi" [user]="user"></app-child>
