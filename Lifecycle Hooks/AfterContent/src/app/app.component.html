@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div>我是父组件</div>
+  <app-child>
+    <div class="header">这是页头，我是父组件中的DIV{{title}}</div>
+    <div class="footer">这是页脚，我是父组件中的DIV</div>
+  </app-child>
+</div>
+<div [innerHTML]="divContent"></div>
+<h4>在视图变更检测周期中，是禁止在一个组件视图已经被组装好再去更新这个视图的。</h4>
+<h4>也就是说不可以在AfterViewInit和AfterViewChecked中去更新视图。</h4>
+<h4>但是在AfterContentInit和AfterContentChecked中是可以更新视图的，</h4>
+<h4>因为此时视图还未组装完毕！！！</h4>
+<h4>如这个插值表达式：{{message}}</h4>
