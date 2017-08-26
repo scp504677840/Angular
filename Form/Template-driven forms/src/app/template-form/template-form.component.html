@@ -1,0 +1,66 @@
+<!-- 该Form已经被angular接管了，angular会自动的给这个Form挂上一个ngForm指令 -->
+<form action="/register" method="post">
+
+  <h4> 该Form已经被angular接管了，angular会自动的给这个Form挂上一个ngForm指令 </h4>
+
+  <div>
+    用户名：<input type="text" required pattern="[a-zA-Z0-9]+">
+  </div>
+
+  <div>
+    密码：<input type="password">
+  </div>
+
+  <div>
+    确认密码：<input type="password">
+  </div>
+
+  <div>
+    手机号：<input type="number">
+  </div>
+
+  <button type="submit">注册</button>
+
+</form>
+
+<!-- ngForm可以在Form标签之后的地方使用，如给div标签添加一个ngForm指令，它和上面的这个表单没有任何区别 -->
+<div ngForm>
+  <h4> ngForm可以在Form标签之后的地方使用，如给div标签添加一个ngForm指令，它和上面的这个表单没有任何区别 </h4>
+  <div>
+    手机号：<input type="number">
+  </div>
+
+  <button type="submit">注册</button>
+</div>
+
+<!-- 如果你不希望angular来接管你的Form表单，你可以使用ngNoForm指令来标记 -->
+<form ngNoForm>
+  <h4>如果你不希望angular来接管你的Form表单，你可以使用ngNoForm指令来标记</h4>
+  <div>
+    手机号：<input type="number">
+  </div>
+
+  <button type="submit">注册</button>
+</form>
+<!-- 演示ngModel、ngModelGroup、(ngSubmit)用法 -->
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
+
+  <h4> 演示ngModel、ngModelGroup、(ngSubmit)用法 </h4>
+
+  <div ngModelGroup="userinfo">
+    <div>用户名：<input ngModel name="username" type="text"></div>
+    <div>密码：<input type="password"></div>
+  </div>
+
+  <div>
+    手机号：<input #phone="ngModel" ngModel name="phone" type="number">
+  </div>
+
+  <button type="submit">注册</button>
+</form>
+<div>
+  {{myForm.value | json}}
+</div>
+<div>
+  {{phone.value}}
+</div>
