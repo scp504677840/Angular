@@ -1,0 +1,42 @@
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, FormArray} from '@angular/forms';
+
+@Component({
+  selector: 'app-reactive-register',
+  templateUrl: './reactive-register.component.html',
+  styleUrls: ['./reactive-register.component.css']
+})
+export class ReactiveRegisterComponent implements OnInit {
+
+  formModel: FormGroup;
+
+  constructor() {
+    // 表单组
+    this.formModel = new FormGroup({
+      // 用户名
+      username: new FormControl(),
+      // 手机号
+      phone: new FormControl(),
+      // 密码组
+      pwdGroup: new FormGroup({
+        // 密码
+        password: new FormControl(),
+        // 确认密码
+        repassword: new FormControl(),
+      }),
+      // 邮箱
+      /*emails: new FormArray([
+        new FormControl(),
+        new FormControl(),
+      ]),*/
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  onSubmit() {
+    console.log(this.formModel.value);
+  }
+
+}
