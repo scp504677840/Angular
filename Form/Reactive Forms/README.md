@@ -1,4 +1,4 @@
-# 响应式表单
+# 响应式表单、FormBuilder
 # 类名	指令
 # FormGroup	formGroup | formGroupName
 # FormControl	formControl | formControlName
@@ -19,7 +19,6 @@
 	## 1.FormGroup(例：[FormGroup]="formModel")里面不可以有<div FormControl="username">，只能写FormControlName="username"
 
 # FormBuilder
-`
 constructor(fb : FormBuilder){
 	this.formModel : fb.group({
 		username : [''],
@@ -34,4 +33,3 @@ constructor(fb : FormBuilder){
 		]),
 	});	
 }
-`
