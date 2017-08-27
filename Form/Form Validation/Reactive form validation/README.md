@@ -33,16 +33,20 @@
 ## pending 当一个字段正处于异步校验时，pending=true
 # 使用方法
 ## touched 和 untouched
-`
+```
 <div [hidden]="formModel.get('username').valid && formModel.get('username').untouched">
 	<div [hidden]="!formModel.get('username').valid">用户名是必填项</div>
 </div>
-`
+```
 ## pristine 和 dirty
-## <div [hidden]="formModel.get('phone').valid && formModel.get('phone').pristine">
-   	<div [hidden]="!formModel.get('phone').valid" >手机号必须11位</div>
-   </div>
+```
+<div [hidden]="formModel.get('phone').valid && formModel.get('phone').pristine">
+	<div [hidden]="!formModel.get('phone').valid" >手机号必须11位</div>
+</div>
+```
 ## pending
-## <div [hidden]="!formModel.get('phone').pending">
-   	正在验证手机号的合法性...
-   </div>
+```
+<div [hidden]="!formModel.get('phone').pending">
+	正在验证手机号的合法性...
+</div>
+```
