@@ -1,0 +1,51 @@
+<form [formGroup]="formModel" (submit)="onSubmit()">
+
+  <div>
+    用户名：<input [class.hasError]="formModel.get('username').invalid && formModel.get('username').touched" type="text"
+               formControlName="username">
+  </div>
+  <div [hidden]="formModel.get('username').valid || formModel.get('username').untouched">
+    <div [hidden]="!formModel.hasError('required','username')">
+      用户名是必填项
+    </div>
+  </div>
+
+  <div>
+    手机号：<input type="text" formControlName="phone">
+  </div>
+  <div [hidden]="formModel.get('phone').valid || formModel.get('phone').pristine">
+    <div [hidden]="!formModel.hasError('required','phone')">
+      手机号是必填项
+    </div>
+    <div [hidden]="!formModel.hasError('minlength','phone')">
+      手机号必须11位
+    </div>
+  </div>
+  <div [hidden]="!formModel.get('phone').pending">
+    正在验证手机号合法性...
+  </div>
+
+  <div formGroupName="pwdGroup">
+
+    <div>
+      密码：<input type="password" formControlName="password">
+    </div>
+    <div [hidden]="!formModel.hasError('minlength',['pwdGroup','password'])">
+      {{formModel.getError('password',['pwdGroup','password']).msg}}
+    </div>
+
+    <div>
+      确认密码：<input type="password" formControlName="repassword">
+    </div>
+    <div [hidden]="!formModel.hasError('password',['pwdGroup'])">
+      密码与确认密码不一致
+    </div>
+
+  </div>
+
+  <button type="submit">注册</button>
+
+</form>
+<div>
+  {{formModel.status}}
+</div>
