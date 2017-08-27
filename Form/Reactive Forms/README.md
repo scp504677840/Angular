@@ -19,17 +19,17 @@
 	## 1.FormGroup(例：[FormGroup]="formModel")里面不可以有<div FormControl="username">，只能写FormControlName="username"
 
 # FormBuilder
-constructor(fb : FormBuilder){
-	this.formModel : fb.group({
-		username : [''],
-		phone : [''],
-		pwdGroup : fb.group({
-			password : [''],
-			repassword : [''],
-		}),
-		emails : fb.array([
-			[''],
-			[''],
-		]),
-	});	
-}
+	constructor(fb : FormBuilder){
+		this.formModel : fb.group({
+			username : [''],
+			phone : [''],
+			pwdGroup : fb.group({
+				password : [''],
+				repassword : [''],
+			}),
+			emails : fb.array([
+				[''],
+				[''],
+			]),
+		});	
+	}
