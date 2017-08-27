@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, FormArray} from '@angular/forms';
+import {FormControl, FormGroup, FormArray, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-register',
@@ -10,7 +10,29 @@ export class ReactiveRegisterComponent implements OnInit {
 
   formModel: FormGroup;
 
-  constructor() {
+  /**
+   * 使用FormBuilder
+   */
+  constructor(fb: FormBuilder) {
+    this.formModel = fb.group({
+      username: [''],
+      phone: [''],
+      pwdGroup: fb.group({
+        password: [''],
+        repassword: [''],
+      }),
+      emails: fb.array([
+        [''],
+        [''],
+      ]),
+    });
+  }
+
+  /**
+   * 普通写法，也就是未使用FormBuilder
+   */
+
+  /*constructor() {
     // 表单组
     this.formModel = new FormGroup({
       // 用户名
@@ -25,12 +47,12 @@ export class ReactiveRegisterComponent implements OnInit {
         repassword: new FormControl(),
       }),
       // 邮箱
-      /*emails: new FormArray([
+      /!*emails: new FormArray([
         new FormControl(),
         new FormControl(),
-      ]),*/
+      ]),*!/
     });
-  }
+  }*/
 
   ngOnInit() {
   }
