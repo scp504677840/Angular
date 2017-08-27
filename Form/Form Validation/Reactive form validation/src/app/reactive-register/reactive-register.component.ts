@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormArray, FormBuilder, AbstractControl, Validators} from '@angular/forms';
-import {AppValidators, pwdGroupValidator, pwdValidator} from '../validator/app.validators';
+import {AppValidators, phoneAsyncValidator, pwdGroupValidator, pwdValidator} from '../validator/app.validators';
 
 @Component({
   selector: 'app-reactive-register',
@@ -17,9 +17,9 @@ export class ReactiveRegisterComponent implements OnInit {
   constructor(fb: FormBuilder) {
     this.formModel = fb.group({
       username: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.min(11)]],
+      phone: ['', [Validators.required, Validators.minLength(11)], phoneAsyncValidator],
       pwdGroup: fb.group({
-        password: ['', AppValidators.pwddValidator],
+        password: ['', [AppValidators.pwddValidator, Validators.minLength(6)]],
         repassword: [''],
       }, {validator: pwdGroupValidator}),
       emails: fb.array([

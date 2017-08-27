@@ -1,4 +1,5 @@
 import {FormControl, AbstractControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 export class AppValidators {
 
@@ -6,7 +7,7 @@ export class AppValidators {
     const myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
     const valid = myreg.test(control.value);
     console.log(valid);
-    return valid ? null : {password: true};
+    return valid ? null : {password: {msg: '密码不合法'}};
   }
 
   /**
@@ -30,6 +31,18 @@ export function pwdValidator(control: FormControl): any {
   const valid = myreg.test(control.value);
   console.log(valid);
   return valid ? null : {password: true};
+}
+
+/**
+ * 异步校验器
+ * @param {FormControl} control
+ * @returns {any}
+ */
+export function phoneAsyncValidator(control: FormControl): any {
+  const myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+  const valid = myreg.test(control.value);
+  console.log('异步校验器结果：' + valid);
+  return Observable.of(valid ? null : {phone: true}).delay(5000);
 }
 
 /**

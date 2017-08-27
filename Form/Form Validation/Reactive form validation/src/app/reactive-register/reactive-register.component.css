@@ -1,0 +1,7 @@
+.ng-invalid{
+  font-weight: bold;
+}
+
+.hasError{
+  border-color: red;
+}
