@@ -1,0 +1,17 @@
+<div>
+  商品信息
+</div>
+
+<!-- 第一种普通请求处理方式 -->
+<!--<ul>
+  <li *ngFor="let product of products">
+    {{product.title}}
+  </li>
+</ul>-->
+
+<!-- 第二种管道请求处理方式 -->
+<ul>
+  <li *ngFor="let product of products | async">
+    {{product.title}}
+  </li>
+</ul>
