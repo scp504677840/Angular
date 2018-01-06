@@ -1,0 +1,15 @@
+<div class="parent">
+
+  <h2>AfterView</h2>
+
+  <app-after-view *ngIf="show"></app-after-view>
+
+  <p>
+    <button (click)="reset()">Reset</button>
+  </p>
+
+  <h4>-- AfterView Logs --</h4>
+
+  <div *ngFor="let msg of logs">{{msg}}</div>
+
+</div>

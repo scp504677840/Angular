@@ -1,0 +1,17 @@
+<div class="parent">
+
+  <h2>AfterContent</h2>
+
+  <div *ngIf="show">
+    <app-after-content>
+      <app-child-view></app-child-view>
+    </app-after-content>
+  </div>
+
+  <p>
+    <button (click)="reset()">Reset</button>
+  </p>
+
+  <h4>-- AfterContent Logs --</h4>
+  <div *ngFor="let msg of logs">{{msg}}</div>
+</div>
