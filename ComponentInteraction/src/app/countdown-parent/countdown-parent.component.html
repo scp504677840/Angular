@@ -1,0 +1,5 @@
+<h3>升降机倒计时（通过局部变量）</h3>
+<button (click)="timer.start()">Start</button>
+<button (click)="timer.stop()">Stop</button>
+<p>{{timer.seconds}}</p>
+<app-countdown-child #timer></app-countdown-child>

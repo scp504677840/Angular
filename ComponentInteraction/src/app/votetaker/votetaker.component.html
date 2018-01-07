@@ -1,0 +1,3 @@
+<h2>人类应该殖民宇宙吗？</h2>
+<h3>同意：{{agreed}}，不同意：{{disagreed}}</h3>
+<app-voter *ngFor="let voter of voters" [name]="voter" (onVoted)="onVoted($event)"></app-voter>
