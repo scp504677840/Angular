@@ -1,0 +1,7 @@
+.job-ad {
+  border: 1px solid gray;
+  padding: 5px 5px 20px 20px;
+  border-radius: 10px;
+  background-color: lightblue;
+  color: black;
+}
