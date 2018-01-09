@@ -1,0 +1,29 @@
+<h1>这是我第一个指令</h1>
+
+<h4>选择一个高亮颜色：</h4>
+
+<div>
+  <input type="radio" name="colors" (click)="color = 'lightgreen'">Green
+  <input type="radio" name="colors" (click)="color = 'yellow'">Yellow
+  <input type="radio" name="colors" (click)="color = 'cyan'">Cyan
+</div>
+
+<p appHighlight>Highlight Me!</p>
+
+<p [appHighlight]="color">高亮我</p>
+
+<p [appHighlight]="color" defaultColor="blue">请高亮我，带默认的颜色！</p>
+
+<p><i>将鼠标悬停在以下行上可查看固定的高光</i></p>
+
+<p [appHighlight]="'yellow'">以黄色突出显示</p>
+
+<p [appHighlight]="'orange'">以橙色突出显示</p>
+
+<p><i>以下为指令展开写法</i></p>
+
+<p appHighlight highlightColor="color">展开写法1，设置高亮颜色(highlightColor)</p>
+
+<!--<p appHighlight [highlightColor]="color">展开写法2，设置高亮颜色([highlightColor])->错误的写法</p>-->
+
+<p appHighlight highlightColor="color" defaultColor="orange">展开写法3，设置高亮颜色(highlightColor)，带默认颜色(defaultColor)</p>
