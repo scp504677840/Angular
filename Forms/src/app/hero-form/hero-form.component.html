@@ -1,0 +1,151 @@
+<div class="container">
+
+  <div [hidden]="submitted">
+
+    <h1>Hero Form</h1>
+
+    <!--
+    heroForm变量是一个到NgForm指令的引用，它代表该表单的整体。
+    什么是NgForm指令？ 但我们明明没有添加过NgForm指令啊！
+    Angular替你做了。Angular会在<form>标签上自动创建并附加一个NgForm指令。
+    NgForm指令为form增补了一些额外特性。
+    它会控制那些带有ngModel指令和name属性的元素，监听他们的属性（包括其有效性）。
+    它还有自己的valid属性，这个属性只有在它包含的每个控件都有效时才是真。
+    -->
+    <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
+
+      <!--
+      注意，<input>标签还添加了name属性 (attribute)，并设置为 "name"，表示英雄的名字。
+      使用任何唯一的值都可以，但使用具有描述性的名字会更有帮助。
+      当在表单中使用[(ngModel)]时，必须要定义name属性。
+      在内部，Angular 创建了一些FormControl，
+      并把它们注册到NgForm指令，再将该指令附加到<form>标签。
+      注册每个FormControl时，使用name属性值作为键值。本章后面会讨论NgForm。
+
+      为第二人格和超能力属性添加类似的[(ngModel)]绑定和name属性。
+      抛弃输入框的绑定消息，在组件顶部添加到diagnostic属性的新绑定。
+      这样就能确认双向数据绑定在整个 Hero 模型上都能正常工作了。
+      -->
+      <div class="form-group">
+        <label for="name">Name</label>
+
+        <!-- 显示CSS类信息 需要时打开 不需要时注释 -->
+        <!--<input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #spy>
+        TODO: remove this: {{spy.className}}-->
+
+        <!--
+        模板引用变量可以访问模板中输入框的 Angular 控件。
+        这里，创建了名叫name的变量，并且赋值为 "ngModel"。
+        为什么是 “ngModel”？
+        指令的 exportAs 属性告诉 Angular 如何链接模板引用变量到指令。
+        这里把name设置为ngModel是因为ngModel指令的exportAs属性设置成了 “ngModel”。
+        -->
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+
+        <!--
+        我们把div元素的hidden属性绑定到name控件的属性，这样就可以控制“姓名”字段错误信息的可见性了。
+        上例中，当控件是有效的 (valid) 或全新的 (pristine) 时，隐藏消息。
+        “全新的”意味着从它被显示在表单中开始，用户还从未修改过它的值。
+        这种用户体验取决于开发人员的选择。
+
+        有些人会希望任何时候都显示这条消息。
+        如果忽略了pristine状态，就会只在值有效时隐藏此消息。
+        如果往这个组件中传入全新（空）的英雄，或者无效的英雄，将立刻看到错误信息 —— 虽然我们还啥都没做。
+
+        有些人会为这种行为感到不安。
+        它们希望只有在用户做出无效的更改时才显示这个消息。
+        如果当控件是“全新”状态时也隐藏消息，就能达到这个目的。
+        在往表单中添加新英雄时，将看到这种选择的重要性。
+
+        英雄的第二人格是可选项，所以不用改它。
+        英雄的超能力选项是必填的。
+        只要愿意，可以往<select>上添加相同的错误处理。
+        但没有必要，这个选择框已经限制了“超能力”只能选有效值。
+        我们希望在这个表单中添加新的英雄。
+        在表单的底部放置“New Hero（新增英雄）”按钮，并把它的点击事件绑定到newHero组件。
+        -->
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="alterEgo">Alter Ego</label>
+        <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
+      </div>
+
+      <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select class="form-control" id="power" required [(ngModel)]="model.power" name="power" #power="ngModel">
+          <option *ngFor="let power of powers" [value]="power">{{power}}</option>
+        </select>
+        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+          Power is required
+        </div>
+      </div>
+
+      <!--
+      每个 input 元素都有id属性，label元素的for属性用它来匹配到对应的输入控件。
+      每个 input 元素都有name属性，Angular 表单用它注册控件。
+      -->
+
+      <!--
+      使用 ngSubmit 提交该表单
+      在填表完成之后，用户还应该能提交这个表单。
+      “Submit（提交）”按钮位于表单的底部，
+      它自己不做任何事，但因为有特殊的 type 值 (type="submit")，所以会触发表单提交。
+      现在这样仅仅触发“表单提交”是没用的。
+      要让它有用，就要把该表单的ngSubmit事件属性绑定到英雄表单组件的onSubmit()方法上：
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      我们已经定义了一个模板引用变量#heroForm，并且把赋值为“ngForm”。
+      现在，就可以在“Submit”按钮中访问这个表单了。
+
+      我们要把表单的总体有效性通过heroForm变量绑定到此按钮的disabled属性上，代码如下：
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      -->
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newHero();heroForm.reset();">New Hero</button>
+
+      <i>with</i> reset
+
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>
+
+      <!-- 不在DOCS中显示 -->
+      <div>
+        <hr>
+        Name via form.controls = {{showFormControls(heroForm)}}
+      </div>
+    </form>
+
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>您提交了以下内容：</h2>
+
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9" pull-left>{{model.name}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xd-9" pull-left>{{model.alterEgo}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-3">Power</div>
+      <div class="col-xs-9" pull-left>{{model.power}}</div>
+    </div>
+
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+
+  </div>
+  <!--
+  英雄又出现了，它通过插值表达式绑定显示为只读内容。
+  这一小段 HTML 只在组件处于已提交状态时才会显示。
+  这段HTML包含一个 “Edit（编辑）”按钮，将 click 事件绑定到表达式，用于清除submitted标志。
+  当点Edit按钮时，这个只读块消失了，可编辑的表单重新出现了。
+  -->
+
+</div>
