@@ -1,0 +1,49 @@
+<h1>Angular Router</h1>
+<nav>
+  <!--
+  a标签上的RouterLink指令让路由器得以控制这个a元素。
+  这里的导航路径是固定的，因此可以把一个字符串赋给routerLink（“一次性”绑定）。
+
+  如果需要更加动态的导航路径，那就把它绑定到一个返回链接参数数组的模板表达式。
+  路由器会把这个数组解析成完整的URL。
+
+  每个a标签上的RouterLinkActive指令可以帮用户在外观上区分出当前选中的“活动”路由。
+  当与它关联的RouterLink被激活时，路由器会把CSS类active添加到这个元素上。
+  我们可以把该指令添加到a元素或它的父元素上。
+
+  -->
+  <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
+  <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+</nav>
+
+<!--
+routerLink 绑定
+在出口上方的A标签中，有一个绑定RouterLink指令的属性绑定，就像这样：routerLink="..."。
+我们从路由库中导入了RouterLink。
+例子中的每个链接都有一个字符串型的路径，也就是我们以前配置过的路由路径，但还没有指定路由参数。
+
+我们还可以通过提供查询字符串参数为RouterLink提供更多情境信息，
+或提供一个URL片段（Fragment或hash）来跳转到本页面中的其它区域。
+查询字符串可以由[queryParams]绑定来提供，
+它需要一个对象型参数（如{ name: 'value' }），
+而URL片段需要一个绑定到[fragment]的单一值。
+
+routerLinkActive绑定
+每个A标签还有一个到RouterLinkActive指令的属性绑定，就像routerLinkActive="..."。
+等号（=）右侧的模板表达式包含用空格分隔的一些CSS类。
+当路由激活时路由器就会把它们添加到此链接上（反之则移除）。
+我们还可以把RouterLinkActive指令绑定到一个CSS类组成的数组，如[routerLinkActive]="['...']"。
+
+RouterLinkActive指令会基于当前的RouterState对象来为激活的RouterLink切换CSS类。
+这会一直沿着路由树往下进行级联处理，所以父路由链接和子路由链接可能会同时激活。
+要改变这种行为，可以把[routerLinkActiveOptions]绑定到{exact: true}表达式。
+如果使用了{ exact: true }，那么只有在其URL与当前URL精确匹配时才会激活指定的RouterLink。
+-->
+
+<!--
+RouterOutlet 指令
+RouterOutlet是一个来自路由库的组件。 路由器会在<router-outlet>标签中显示视图。
+一个模板中只能有一个未命名的<router-outlet>。
+但路由器可以支持多个命名的出口（outlet），将来我们会涉及到这部分特性。
+-->
+<router-outlet></router-outlet>
